@@ -62,6 +62,15 @@ PORT=5000
 
 ---
 
+# ⚡ Usage
+
+- 👤 Register or login using Google account  
+- 🎬 Browse the collection of streaming media  
+- 🔍 Use the search bar to find specific movies/shows  
+- ▶️ Click on any media item to view details and stream content  
+
+---
+
 # 🖼️ Images
 ## Sign Up
 <img width="559" height="522" alt="image" src="https://github.com/user-attachments/assets/3581d744-8228-40f1-9626-8aad75a78830" />
