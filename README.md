@@ -1,22 +1,101 @@
-<h1 align="center">Hi 👋, I'm Mohit Dabral</h1>
-<h3 align="center">Cybersecurity & Linux Enthusiast</h3>
+# 🎬 Netstream
 
-- 🌱 I’m currently learning **Ethical Hacking**
 
-- 👯 I’m looking to collaborate on **Cybersecurity Projects**
+**Netstream** is a Netflix-inspired full-stack streaming platform built with the **MERN stack** (MongoDB, Express, React, Node.js). It features user authentication, responsive UI, media content display, and a modern design.
 
-- 💬 Ask me about **Cybersecurity**
+---
 
-- 📫 How to reach me **dabralmohit78@gmail.com**
+## 🔧 Tech Stack
 
-- 📄 Know about my experiences [https://drive.google.com/file/d/121vSGv280w3zDshcYW9IhLgfLD7m88yS/view?usp=sharing](https://drive.google.com/file/d/121vSGv280w3zDshcYW9IhLgfLD7m88yS/view?usp=sharing)
+- **Frontend:** React, CSS  
+- **Backend:** Node.js, Express  
+- **Database:** MongoDB (Mongoose)  
+- **Authentication:** Google OAuth  
+- **Deployment:** [Coming Soon] / [Deployed on Render/Vercel/Netlify]  
 
-- ⚡ Fun fact **I like cooking**
+---
 
-<h3 align="left">Connect with me:</h3>
-<p align="left">
-</p>
+## ✨ Features
 
-<h3 align="left">Languages and Tools:</h3>
-<p align="left"> <a href="https://www.w3schools.com/cpp/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="cplusplus" width="40" height="40"/> </a> <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> <a href="https://www.java.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/> </a> <a href="https://www.linux.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40"/> </a> <a href="https://pandas.pydata.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/2ae2a900d2f041da66e950e4d48052658d850630/icons/pandas/pandas-original.svg" alt="pandas" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a> </p>
+- 👤 User registration & login (Google authentication)  
+- 🎥 Browse and watch streaming content  
+- 🔍 Search bar to filter media  
+- 🎨 Fully responsive design  
+- 🔐 Protected routes and user sessions  
 
+---
+
+## 🚀 Getting Started (Run Locally)
+
+You can run **Netstream** locally by setting up the **frontend** and **backend** separately.
+
+---
+
+### **Frontend Setup**
+```
+git clone https://github.com/Dabral2005/netstream-frontend.git
+cd netstream-frontend
+npm install
+npm start
+```
+
+### **Backend Setup**
+```
+git clone https://github.com/Dabral2005/netstream-backend.git
+cd netstream-backend
+npm install
+```
+
+### **.env(Create File)**
+```
+MONGO_URI=your_mongodb_connection_string
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+JWT_SECRET=your_jwt_secret_key
+PORT=5000
+```
+---
+
+# 📫 Contact
+
+**For any questions or suggestions: dabralmohit78@gmail.com**
+
+---
+
+# 🖼️ Images
+## Sign Up
+<img width="559" height="522" alt="image" src="https://github.com/user-attachments/assets/3581d744-8228-40f1-9626-8aad75a78830" />
+
+## Sign In
+<img width="558" height="700" alt="image" src="https://github.com/user-attachments/assets/52282066-ba6c-4c85-a095-04df147fc9ae" />
+
+## Homepage
+<img width="952" height="421" alt="image" src="https://github.com/user-attachments/assets/c4ccd7c6-2d12-4d0e-8abf-0896e88fe6f3" />
+
+## Result after searching movies
+<img width="916" height="370" alt="image" src="https://github.com/user-attachments/assets/72d45426-07c5-4a75-85dc-adc4927c1828" />
+
+---
+
+# 🚧 Limitations
+
+📺 No Actual Video Streaming
+The project uses placeholder routes (e.g., /player/:id) and can only simulate video playback. Real Netflix-level streaming is not implemented.
+
+🌐 Google OAuth Dependency
+While Google login is integrated, the authentication process relies entirely on Google’s API. If the API fails or the internet connection is unstable, users cannot log in. Additionally, no fallback authentication mechanism is provided.
+
+👤 No Multi-User Profiles
+Unlike Netflix, this project does not support multiple user profiles under a single account, limiting personalized experiences.
+
+📶 Limited Offline Support
+Content cannot be downloaded for offline usage, and caching is not implemented, restricting access in low or no internet connectivity scenarios.
+
+🗂️ Static Content
+Movies and TV shows are either hardcoded or fetched from demo APIs. The system does not provide dynamic content updates or personalized recommendations based on watch history.
+
+⚡ Scalability Limitations
+The project lacks backend server infrastructure or cloud support, which limits its ability to handle a large number of concurrent users.
+
+⚖️ Legal and Copyright Constraints
+Due to copyright restrictions, real Netflix content cannot be integrated. Only demo content or open APIs are used, limiting the variety and quality of available media.
