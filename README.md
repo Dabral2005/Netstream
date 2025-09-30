@@ -56,12 +56,6 @@ PORT=5000
 ```
 ---
 
-# 📫 Contact
-
-**For any questions or suggestions: dabralmohit78@gmail.com**
-
----
-
 # ⚡ Usage
 
 - 👤 Register or login using Google account  
@@ -108,3 +102,9 @@ The project lacks backend server infrastructure or cloud support, which limits i
 
 ⚖️ Legal and Copyright Constraints
 Due to copyright restrictions, real Netflix content cannot be integrated. Only demo content or open APIs are used, limiting the variety and quality of available media.
+
+---
+
+# 📫 Contact
+
+**For any questions or suggestions: dabralmohit78@gmail.com**
