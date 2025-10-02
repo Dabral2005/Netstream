@@ -11,7 +11,7 @@
 - **Backend:** Node.js, Express  
 - **Database:** MongoDB (Mongoose)  
 - **Authentication:** Google OAuth  
-- **Deployment:** [Coming Soon] / [Deployed on Render/Vercel/Netlify]  
+- **Deployment:** [Coming Soon] / [Deployed on Render/Vercel/Netlify]   
 
 ---
 
@@ -33,16 +33,15 @@ You can run **Netstream** locally by setting up the **frontend** and **backend**
 
 ### **Frontend Setup**
 ```
-git clone https://github.com/Dabral2005/netstream-frontend.git
-cd netstream-frontend
+git clone https://github.com/Dabral2005/Netstream.git
+cd Netstream/frontend
 npm install
-npm start
+npm run dev
 ```
 
 ### **Backend Setup**
 ```
-git clone https://github.com/Dabral2005/netstream-backend.git
-cd netstream-backend
+cd Netstream/backend
 npm install
 ```
 
