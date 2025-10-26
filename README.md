@@ -105,6 +105,6 @@ Due to copyright restrictions, real Netflix content cannot be integrated. Only d
 ---
 
 # 📫 Contact
-**GitHub: Dabral2005
+GitHub: Dabral2005
 
 **For any questions or suggestions: dabralmohit78@gmail.com**
