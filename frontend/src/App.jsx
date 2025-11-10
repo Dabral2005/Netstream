@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import Home from './pages/Home/Home';
 import Login from './pages/login/login';
-import Player from './pages/player/Player';
+import Player from './pages/player/player';
 import Titlecard from './components/titlecards/Titlecard';
 import Privacy from "./Privacy";
 import HelpCenter from "./HelpCenter";
