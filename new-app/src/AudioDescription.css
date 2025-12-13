@@ -1,0 +1,45 @@
+.audio-description-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  color: #fff;
+  background-color: #141414;
+  line-height: 1.6;
+}
+
+.audio-description-page h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.audio-description-page h2 {
+  font-size: 1.4rem;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: #e50914; /* Netflix red */
+}
+
+.audio-description-page p {
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+.audio-description-page ul {
+  margin-left: 20px;
+  list-style-type: disc;
+}
+
+.audio-description-page a {
+  color: #e50914;
+  text-decoration: none;
+}
+
+.audio-description-page a:hover {
+  text-decoration: underline;
+}
+
+.audio-description-page .last-updated {
+  margin-top: 30px;
+  font-size: 0.9rem;
+  color: #aaa;
+}

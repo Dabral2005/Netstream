@@ -1,0 +1,40 @@
+.help-centre-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  color: #fff;
+  background-color: #141414;
+  line-height: 1.6;
+}
+
+.help-centre-page h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.help-centre-page h2 {
+  font-size: 1.4rem;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: #e50914; /* Netflix red */
+}
+
+.help-centre-page p {
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+.help-centre-page a {
+  color: #e50914;
+  text-decoration: none;
+}
+
+.help-centre-page a:hover {
+  text-decoration: underline;
+}
+
+.help-centre-page .last-updated {
+  margin-top: 30px;
+  font-size: 0.9rem;
+  color: #aaa;
+}
