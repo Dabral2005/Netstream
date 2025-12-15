@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './Login.css'
+import './login.css'
 import logo from '../../assets/logo.png'
 import netflix_spinner from '../../assets/netflix_spinner.gif'
 import { useGoogleLogin } from '@react-oauth/google'
