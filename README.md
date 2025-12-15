@@ -66,16 +66,19 @@ PORT=5000
 
 # 🖼️ Images
 ## Sign Up
-<img width="559" height="522" alt="image" src="https://github.com/user-attachments/assets/3581d744-8228-40f1-9626-8aad75a78830" />
+<img width="692" height="900" alt="image" src="https://github.com/user-attachments/assets/f3b4310a-3a09-4ef4-b04c-afa196a62320" />
 
 ## Sign In
-<img width="558" height="700" alt="image" src="https://github.com/user-attachments/assets/52282066-ba6c-4c85-a095-04df147fc9ae" />
+<img width="706" height="838" alt="image" src="https://github.com/user-attachments/assets/14630cd8-29b7-4e10-9568-a6f58d5f3a43" />
 
 ## Homepage
-<img width="952" height="421" alt="image" src="https://github.com/user-attachments/assets/c4ccd7c6-2d12-4d0e-8abf-0896e88fe6f3" />
+<img width="1919" height="921" alt="image" src="https://github.com/user-attachments/assets/0cca9f20-693a-48f8-bd9f-e36704d9d262" />
+
+## Movies
+<img width="1919" height="907" alt="image" src="https://github.com/user-attachments/assets/eb5c486d-0c96-48f0-a6f7-d5ceb76c289b" />
 
 ## Result after searching movies
-<img width="916" height="370" alt="image" src="https://github.com/user-attachments/assets/72d45426-07c5-4a75-85dc-adc4927c1828" />
+<img width="1919" height="909" alt="image" src="https://github.com/user-attachments/assets/5ddf5354-3234-4bc5-b02a-a9b02811ef12" />
 
 ---
 
