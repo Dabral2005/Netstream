@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <div className='footer'>
+    <footer className='footer'>
       <div className="footer-icons">
         <a href="https://www.facebook.com/netflix" target="_blank" rel="noopener noreferrer">
           <img src={facebook_icon} alt="Facebook" />
@@ -24,16 +24,25 @@ const Footer = () => {
         </a>
       </div>
 
-      <ul>
+      <ul className="footer-links">
         <li><Link to="/audio-description">Audio Description</Link></li>
         <li><Link to="/help-centre">Help Centre</Link></li>
+        <li><a href="#gift">Gift Cards</a></li>
+        <li><a href="#media">Media Centre</a></li>
+        <li><a href="#investor">Investor Relations</a></li>
+        <li><a href="#jobs">Jobs</a></li>
+        <li><a href="#terms">Terms of Use</a></li>
         <li><Link to="/privacy">Privacy</Link></li>
         <li><Link to="/legal-notices">Legal Notices</Link></li>
+        <li><a href="#cookies">Cookie Preferences</a></li>
+        <li><a href="#corporate">Corporate Information</a></li>
         <li><Link to="/contact-us">Contact Us</Link></li>
       </ul>
 
-      <p className='copyright-text'>© 1997-2023 Netflix, Inc.</p>
-    </div>
+      <button className="service-code-btn">Service Code</button>
+
+      <p className='copyright-text'>© 1997-2026 Netstream, Inc.</p>
+    </footer>
   )
 }
 
