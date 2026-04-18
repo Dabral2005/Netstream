@@ -1,3 +1,3 @@
-app.get("/health", (req, res) => {
-  res.json({ status: "ok" });
+app.use((err, req, res, next) => {
+  res.status(500).json({ error: err.message });
 });
