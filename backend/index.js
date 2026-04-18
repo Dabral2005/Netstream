@@ -1,6 +1,7 @@
 const express = require('express');
 const mongo = require('mongoose');
 const cors  = require('cors');
+const path  = require('path');          // ← add if not already there
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -13,12 +14,16 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/auth', authRoutes);     // (not in repo)
-app.use('/api/movies', moviesRoutes); // (not in repo)
+// Auth routes
+const authRoutes = require('./routes/auth');
+app.use('/api/auth', authRoutes);
 
-// Passport
-app.use(passport.initialize());
-app.use(passport.session());
+// *** NEW ***
+const moviesRoutes = require('./routes/movies');
+app.use('/api/movies', moviesRoutes);
+
+// Passport (unchanged)
+// ...
 
 // Static file fallback (React build)
 app.get('*', (req, res) => {
