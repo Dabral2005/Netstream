@@ -245,13 +245,22 @@ const Home = () => {
           <div id="top">
             {heroMovie ? (
               <div className="hero">
-                <img src={hero_banner} alt="" className="banner-image" />
+                <div className="hero-img-container">
+                  <img src={hero_banner} alt="" className="banner-image" />
+                </div>
                 <div className="hero-caption">
-                  <img src={hero_title} alt="" className="caption-img" />
+                  {heroMovie.title || heroMovie.original_name ? (
+                    <h1 className="hero-dynamic-title">
+                      {heroMovie.title || heroMovie.original_name}
+                    </h1>
+                  ) : (
+                    <img src={hero_title} alt="" className="caption-img" />
+                  )}
 
                   <div className="maturity-badge">
                     <span className="maturity-rating">U/A 13+</span>
                     <span className="maturity-year">{heroMovie.release_date?.slice(0, 4)}</span>
+                    <span className="maturity-duration">Movie</span>
                   </div>
 
                   {showDescription && (
@@ -263,14 +272,19 @@ const Home = () => {
                       className="btn"
                       onClick={() => navigate(`/player/${heroMovie.id}`)}
                     >
-                      <img src={play_icon} alt="" />
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 5V19L19 12L8 5Z" fill="black"/>
+                      </svg>
                       Play
                     </button>
                     <button
                       className="btn dark-btn"
                       onClick={() => setShowDescription(!showDescription)}
                     >
-                      <img src={info_icon} alt="" />
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="2"/>
+                        <path d="M12 16V12M12 8H12.01" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                      </svg>
                       {showDescription ? "Less Info" : "More Info"}
                     </button>
                   </div>

@@ -10,8 +10,14 @@ html {
 /* ===== Hero Section ===== */
 .hero {
   position: relative;
-  height: 85vh;
-  min-height: 500px;
+  height: 90vh;
+  min-height: 600px;
+  overflow: hidden;
+}
+
+.hero-img-container {
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -20,6 +26,12 @@ html {
   height: 100%;
   object-fit: cover;
   object-position: center top;
+  animation: slowZoom 30s ease-out forwards;
+}
+
+@keyframes slowZoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
 }
 
 /* Vignette gradients like Netflix */
@@ -29,8 +41,8 @@ html {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 40%;
-  background: linear-gradient(to top, #141414 0%, rgba(20, 20, 20, 0.6) 40%, transparent 100%);
+  height: 50%;
+  background: linear-gradient(to top, var(--netflix-dark) 0%, rgba(18, 18, 18, 0.7) 30%, transparent 100%);
   pointer-events: none;
 }
 
@@ -41,26 +53,25 @@ html {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to right, rgba(20, 20, 20, 0.8) 0%, transparent 50%);
+  background: linear-gradient(to right, rgba(18, 18, 18, 0.85) 0%, rgba(18, 18, 18, 0.4) 40%, transparent 80%);
   pointer-events: none;
   z-index: 1;
 }
 
 .hero-caption {
   position: absolute;
-  bottom: 35%;
-  left: 0;
-  width: 45%;
-  max-width: 650px;
-  padding-left: 4%;
+  bottom: 28%;
+  left: 4%;
+  width: 50%;
+  max-width: 700px;
   z-index: 2;
-  animation: fadeSlideUp 0.8s 0.2s ease both;
+  animation: fadeSlideUp 0.8s var(--transition-slow) both;
 }
 
 @keyframes fadeSlideUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(40px);
   }
   to {
     opacity: 1;
@@ -68,90 +79,103 @@ html {
   }
 }
 
+.hero-dynamic-title {
+  font-size: clamp(3rem, 5vw, 5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+}
+
 .caption-img {
   width: 100%;
-  max-width: 400px;
-  margin-bottom: 16px;
+  max-width: 450px;
+  margin-bottom: 24px;
 }
 
 .hero-caption .hero-overview {
-  font-size: 16px;
-  line-height: 1.5;
-  margin-bottom: 20px;
-  color: #e5e5e5;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  color: #f1f1f1;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   animation: fadeIn 0.5s ease;
+  font-weight: 400;
 }
 
 /* Maturity Rating Badge */
 .maturity-badge {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 14px;
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
 .maturity-rating {
-  padding: 2px 8px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  font-size: 12px;
-  font-weight: 600;
-  color: #ddd;
-  letter-spacing: 0.5px;
+  padding: 3px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
 }
 
-.maturity-year {
-  font-size: 14px;
-  color: #999;
+.maturity-year, .maturity-duration {
+  font-size: 15px;
+  color: #ccc;
+  font-weight: 500;
 }
 
 /* ===== Hero Buttons ===== */
 .hero-btn {
   display: flex;
-  gap: 10px;
+  gap: 12px;
 }
 
 .hero-btn .btn {
   border: 0;
   outline: 0;
-  padding: 8px 28px;
+  padding: 10px 32px;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-size: 16px;
-  font-weight: 700;
+  justify-content: center;
+  gap: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
   background: white;
   color: #000;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: background var(--transition-fast), transform 0.1s ease;
-  letter-spacing: 0.5px;
+  transition: all var(--transition-fast);
 }
 
-.hero-btn .btn img {
-  width: 24px;
-  height: 24px;
+.hero-btn .btn svg {
+  width: 28px;
+  height: 28px;
 }
 
 .hero-btn .btn:hover {
   background: rgba(255, 255, 255, 0.75);
+  transform: scale(1.03);
 }
 
 .hero-btn .btn:active {
-  transform: scale(0.95);
+  transform: scale(0.97);
 }
 
 .hero-btn .btn.dark-btn {
   color: #fff;
   background: rgba(109, 109, 110, 0.7);
+  backdrop-filter: blur(10px);
 }
 
 .hero-btn .btn.dark-btn:hover {
-  background: rgba(109, 109, 110, 0.5);
+  background: rgba(109, 109, 110, 0.4);
 }
 
 /* ===== Hero Loading ===== */

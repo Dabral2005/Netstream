@@ -17,7 +17,9 @@
 }
 
 .nav-dark {
-  background: rgba(20, 20, 20, 0.97) !important;
+  background: rgba(18, 18, 18, 0.75) !important;
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
   box-shadow: 0 1px 0 rgba(255,255,255,0.05);
 }
 
