@@ -1,7 +1,5 @@
-
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB9OlZkxesWVGzfLchVBtKvBp0Qe99uPzc",
@@ -13,16 +11,36 @@ const firebaseConfig = {
   measurementId: "G-V8ZER1MM4P"
 };
 
-
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const auth= getAuth(app);
+const auth = getAuth(app);
 
-const signup=async (name,email,password)=>{
-    try{
-      const res =  await createUserWithEmailAndPassword(auth,email,password);
-      const user =res.user;
-    }catch(error){
-        
-    }
-}
+const signup = async (name, email, password) => {
+  try {
+    const res = await createUserWithEmailAndPassword(auth, email, password);
+    return res.user;
+  } catch (error) {
+    console.error("Signup error:", error.message);
+    throw error;
+  }
+};
+
+const login = async (email, password) => {
+  try {
+    const res = await signInWithEmailAndPassword(auth, email, password);
+    return res.user;
+  } catch (error) {
+    console.error("Login error:", error.message);
+    throw error;
+  }
+};
+
+const logout = async () => {
+  try {
+    await signOut(auth);
+  } catch (error) {
+    console.error("Logout error:", error.message);
+    throw error;
+  }
+};
+
+export { auth, signup, login, logout };
