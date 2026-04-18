@@ -1,39 +1,74 @@
-.privacy-page {
+/* ===== Static Pages (shared) ===== */
+.static-page {
   max-width: 900px;
   margin: 0 auto;
-  padding: 40px 20px;
-  color: #fff;
-  background-color: #141414;
-  line-height: 1.6;
+  padding: 80px 4% 60px;
+  color: var(--netflix-text);
+  animation: fadeIn 0.4s ease;
 }
 
-.privacy-page h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
+.static-page-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 30px;
 }
 
-.privacy-page h2 {
-  font-size: 1.4rem;
-  margin-top: 30px;
-  margin-bottom: 10px;
-  color: #e50914; /* Netflix red */
+.static-page-header .back-link {
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform var(--transition-fast);
 }
 
-.privacy-page p {
-  margin-bottom: 15px;
-  font-size: 1rem;
+.static-page-header .back-link:hover {
+  transform: translateX(-3px);
 }
 
-.privacy-page ul {
-  margin-left: 20px;
-  list-style-type: disc;
+.static-page h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 24px;
 }
 
-.privacy-page a {
-  color: #e50914;
+.static-page h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 28px;
+  margin-bottom: 12px;
+  color: #e5e5e5;
+}
+
+.static-page p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--netflix-text-muted);
+  margin-bottom: 12px;
+}
+
+.static-page ul {
+  margin: 8px 0 16px 20px;
+  color: var(--netflix-text-muted);
+}
+
+.static-page ul li {
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.static-page a {
+  color: #0071eb;
   text-decoration: none;
 }
 
-.privacy-page a:hover {
+.static-page a:hover {
   text-decoration: underline;
+}
+
+.static-page .last-updated {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #333;
+  font-size: 13px;
+  color: var(--netflix-text-dim);
 }

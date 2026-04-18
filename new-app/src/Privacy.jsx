@@ -1,27 +1,30 @@
 import "./Privacy.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Privacy() {
+  const navigate = useNavigate();
+
   return (
-    <div className="privacy-page">
-      <h1>Privacy Statement</h1>
+    <div className="static-page">
+      <div className="static-page-header">
+        <span className="back-link" onClick={() => navigate(-1)}>←</span>
+        <h1>Privacy Statement</h1>
+      </div>
 
       <p>
         This Privacy Statement explains our practices, including your choices, 
         regarding the collection, use, and disclosure of certain information, 
-        including your personal information, by the Netflix family of companies.
+        including your personal information, by the Netstream family of companies.
       </p>
 
       <h2>Contacting Us</h2>
       <p>
         If you have general questions about your account or how to contact 
-        customer service for assistance, please visit our online help center 
-        at <a href="https://help.netflix.com">help.netflix.com</a>.
+        customer service for assistance, please visit our online help center.
       </p>
 
       <h2>The Collection of Information</h2>
-      <p>
-        We receive and store information about you such as:
-      </p>
+      <p>We receive and store information about you such as:</p>
       <ul>
         <li>Information you provide to us: name, email, payment methods, etc.</li>
         <li>Information we collect automatically: usage data, interactions, etc.</li>
@@ -47,22 +50,13 @@ export default function Privacy() {
         out-of-date or inaccurate personal information we hold about you.
       </p>
 
-      <h2>Other Websites and Platforms</h2>
-      <p>
-        The Netflix service may be provided through and/or utilize features 
-        operated by third party platforms or contain links to sites operated 
-        by third parties.
-      </p>
-
       <h2>Changes to This Privacy Statement</h2>
       <p>
         We will update this Privacy Statement from time to time in response to 
         changing legal, regulatory, or operational requirements.
       </p>
 
-      <p>
-        Last updated: January 2023
-      </p>
+      <p className="last-updated">Last updated: April 2026</p>
     </div>
   );
 }
