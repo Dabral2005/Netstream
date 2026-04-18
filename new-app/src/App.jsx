@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 
 import Home from './pages/Home/Home';
 import Login from './pages/login/login';
@@ -10,6 +10,27 @@ import HelpCenter from "./HelpCenter";
 import AudioDescription from "./AudioDescription";
 import LegalNotices from "./LegalNotices";
 import ContactUs from "./ContactUs";
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
+
+const LoadingBar = () => {
+  const { pathname } = useLocation();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    const timeout = setTimeout(() => setLoading(false), 500);
+    return () => clearTimeout(timeout);
+  }, [pathname]);
+
+  return loading ? <div className="top-loading-bar"></div> : null;
+};
 
 const App = () => {
   const [profile, setProfile] = useState(null);
@@ -23,6 +44,8 @@ const App = () => {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
+      <LoadingBar />
       <Routes>
         {/* Default redirect */}
         <Route path='/' element={<Navigate to="/login" />} />
