@@ -10,25 +10,27 @@ import Footer from "../../components/footer/Footer";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
 import search_icon from "../../assets/search_icon.svg";
-import profile_img from "../../assets/profile_img.png"; // fallback image
+import profile_img from "../../assets/profile_img.png";
 import caret_icon from "../../assets/caret_icon.svg";
 import { useNavigate } from "react-router-dom";
 
 // ================= Navbar ===================
 const Navbar = ({ onSearch }) => {
   const navRef = useRef();
+  const searchRef = useRef();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
-
-  //  State for user info
+  const [searchActive, setSearchActive] = useState(false);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY >= 80) {
-        navRef.current.classList.add("nav-dark");
-      } else {
-        navRef.current.classList.remove("nav-dark");
+      if (navRef.current) {
+        if (window.scrollY >= 80) {
+          navRef.current.classList.add("nav-dark");
+        } else {
+          navRef.current.classList.remove("nav-dark");
+        }
       }
     };
 
@@ -36,13 +38,25 @@ const Navbar = ({ onSearch }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // ✅ Load user info from localStorage
   useEffect(() => {
     const storedUser = localStorage.getItem("netflix_user");
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
   }, []);
+
+  // Close search when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (searchRef.current && !searchRef.current.contains(e.target)) {
+        if (!searchQuery) {
+          setSearchActive(false);
+        }
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [searchQuery]);
 
   const handleScrollTo = (id) => {
     const section = document.getElementById(id);
@@ -55,10 +69,23 @@ const Navbar = ({ onSearch }) => {
     if (e.key === "Enter") {
       onSearch(searchQuery);
     }
+    if (e.key === "Escape") {
+      setSearchActive(false);
+      setSearchQuery("");
+      onSearch("");
+    }
+  };
+
+  const handleSearchClick = () => {
+    setSearchActive(true);
+    setTimeout(() => {
+      const input = searchRef.current?.querySelector("input");
+      if (input) input.focus();
+    }, 100);
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("user");
+    localStorage.removeItem("netflix_user");
     setUser(null);
     navigate("/login");
   };
@@ -66,51 +93,71 @@ const Navbar = ({ onSearch }) => {
   return (
     <div ref={navRef} className="navbar">
       <div className="navbar-left">
-        <img src={logo} alt="logo" />
+        <img src={logo} alt="Netstream" onClick={() => handleScrollTo("top")} />
         <ul>
-          <li><span onClick={() => handleScrollTo("top")}>Home</span></li>
+          <li className="active"><span onClick={() => handleScrollTo("top")}>Home</span></li>
           <li><span onClick={() => handleScrollTo("movies")}>Movies</span></li>
           <li><span onClick={() => handleScrollTo("new-popular")}>New & Popular</span></li>
-          <li><span onClick={() => handleScrollTo("upcoming")}>Upcoming's</span></li>
-          <li><span onClick={() => handleScrollTo("top-picks")}>Top Picks</span></li>
+          <li><span onClick={() => handleScrollTo("upcoming")}>Upcoming</span></li>
+          <li><span onClick={() => handleScrollTo("top-picks")}>My List</span></li>
         </ul>
       </div>
 
       <div className="navbar-right">
-        <div className="search-container">
-          <input
-            type="text"
-            placeholder="Search for movies..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onKeyDown={handleKeyDown}
-            className="search-input"
-          />
-          <img
-            src={search_icon}
-            alt="search"
-            className="icons search-icon"
-            onClick={() => onSearch(searchQuery)}
-          />
+        {/* Expandable Search */}
+        <div className="search-wrapper" ref={searchRef}>
+          <button className="search-toggle" onClick={handleSearchClick}>
+            <img src={search_icon} alt="search" />
+          </button>
+          <div className={`search-container ${searchActive ? "active" : ""}`}>
+            <input
+              type="text"
+              placeholder="Titles, people, genres"
+              value={searchQuery}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                if (e.target.value === "") onSearch("");
+              }}
+              onKeyDown={handleKeyDown}
+              className="search-input"
+            />
+          </div>
         </div>
 
-        {/* ✅ Show user profile dynamically */}
+        {/* Notification Bell */}
+        <div className="notification-bell" title="Notifications">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13.73 21a2 2 0 0 1-3.46 0M18 8A6 6 0 1 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          <span className="notification-dot"></span>
+        </div>
+
+        {/* Profile */}
         <div className="navbar-profile">
           <img
             src={user?.picture || profile_img}
             alt="profile"
             className="profile"
+            referrerPolicy="no-referrer"
           />
-          <span style={{ color: "white", marginLeft: "8px" }}>
-            {user?.name || ""}
-          </span>
-          <img src={caret_icon} alt="caret" />
+          <img src={caret_icon} alt="caret" className="caret" />
           <div className="dropdown">
-            {user ? (
-              <p onClick={handleLogout}>Sign out</p>
-            ) : (
-              <p onClick={() => navigate("/login")}>Sign in</p>
+            {user && (
+              <>
+                <div className="dropdown-item">
+                  <img src={user?.picture || profile_img} alt="" style={{ width: 28, height: 28, borderRadius: 4 }} referrerPolicy="no-referrer" />
+                  {user?.name || "User"}
+                </div>
+                <div className="dropdown-item">Manage Profiles</div>
+                <div className="dropdown-item">Transfer Profile</div>
+                <div className="dropdown-item">Account</div>
+                <div className="dropdown-item">Help Centre</div>
+                <div className="dropdown-divider"></div>
+              </>
             )}
+            <div className="dropdown-signout" onClick={handleLogout}>
+              Sign out of Netstream
+            </div>
           </div>
         </div>
       </div>
@@ -124,6 +171,7 @@ const Home = () => {
   const [heroMovie, setHeroMovie] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
   const [showDescription, setShowDescription] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
 
   const API_KEY = "a8a56da96e93c41af49b1b821a0c9069";
 
@@ -146,12 +194,15 @@ const Home = () => {
 
   // Search API call
   const handleSearch = async (query) => {
-    if (!query) return;
+    if (!query) {
+      setSearchResults([]);
+      setIsSearching(false);
+      return;
+    }
+    setIsSearching(true);
     try {
       const res = await fetch(
-        `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(
-          query
-        )}&api_key=${API_KEY}&language=en-US&page=1`
+        `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(query)}&api_key=${API_KEY}&language=en-US&page=1`
       );
       const data = await res.json();
       setSearchResults(data.results || []);
@@ -161,48 +212,11 @@ const Home = () => {
   };
 
   return (
-    <div className="home">
-      <div id="top">
-        <Navbar onSearch={handleSearch} />
+    <div className="home page-enter">
+      <Navbar onSearch={handleSearch} />
 
-        {/* Hero Section */}
-        {heroMovie ? (
-          <div className="hero">
-            <img src={hero_banner} alt="" className="banner-image" />
-            <div className="hero-caption">
-              <img src={hero_title} alt="" className="caption-img" />
-
-              {showDescription && <p>{heroMovie.overview}</p>}
-
-              <div className="hero-btn">
-                <button
-                  className="btn"
-                  onClick={() => navigate(`/player/${heroMovie.id}`)}
-                >
-                  <img src={play_icon} alt="" />
-                  Play
-                </button>
-                <button
-                  className="btn dark-btn"
-                  onClick={() => setShowDescription(!showDescription)}
-                >
-                  <img src={info_icon} alt="" />
-                  {showDescription ? "Hide Info" : "More Info"}
-                </button>
-              </div>
-
-              <Titlecard />
-            </div>
-          </div>
-        ) : (
-          <div className="hero-loading">
-            <p style={{ color: "white", fontSize: "20px" }}>Loading movie...</p>
-          </div>
-        )}
-      </div>
-
-      {/* Search Results */}
-      {searchResults.length > 0 && (
+      {/* If searching, show only results */}
+      {isSearching && searchResults.length > 0 ? (
         <div className="search-results">
           <h2>Search Results</h2>
           <div className="results-grid">
@@ -215,35 +229,81 @@ const Home = () => {
                 <img
                   src={
                     movie.poster_path
-                      ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
-                      : "https://via.placeholder.com/200x300?text=No+Image"
+                      ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+                      : "https://via.placeholder.com/300x450?text=No+Image"
                   }
                   alt={movie.title}
                 />
-                <p>{movie.title}</p>
+                <div className="card-title">{movie.title}</div>
               </div>
             ))}
           </div>
         </div>
+      ) : (
+        <>
+          {/* Hero Section */}
+          <div id="top">
+            {heroMovie ? (
+              <div className="hero">
+                <img src={hero_banner} alt="" className="banner-image" />
+                <div className="hero-caption">
+                  <img src={hero_title} alt="" className="caption-img" />
+
+                  <div className="maturity-badge">
+                    <span className="maturity-rating">U/A 13+</span>
+                    <span className="maturity-year">{heroMovie.release_date?.slice(0, 4)}</span>
+                  </div>
+
+                  {showDescription && (
+                    <p className="hero-overview">{heroMovie.overview}</p>
+                  )}
+
+                  <div className="hero-btn">
+                    <button
+                      className="btn"
+                      onClick={() => navigate(`/player/${heroMovie.id}`)}
+                    >
+                      <img src={play_icon} alt="" />
+                      Play
+                    </button>
+                    <button
+                      className="btn dark-btn"
+                      onClick={() => setShowDescription(!showDescription)}
+                    >
+                      <img src={info_icon} alt="" />
+                      {showDescription ? "Less Info" : "More Info"}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="hero-loading">
+                <div className="skeleton hero-skeleton"></div>
+              </div>
+            )}
+          </div>
+
+          {/* More Categories */}
+          <div className="morecards">
+            <Titlecard title={"Popular on Netstream"} />
+            <div id="movies">
+              <Titlecard title={"Blockbuster Movies"} category={"top_rated"} />
+            </div>
+            <Titlecard title={"Top 10 in India Today"} category={"popular"} isTopTen={true} />
+            <div id="new-popular">
+              <Titlecard title={"New & Popular"} category={"popular"} />
+            </div>
+            <div id="upcoming">
+              <Titlecard title={"Upcoming"} category={"upcoming"} />
+            </div>
+            <div id="top-picks">
+              <Titlecard title={"Top Picks For You"} category={"now_playing"} />
+            </div>
+          </div>
+
+          <Footer />
+        </>
       )}
-
-      {/* More Categories */}
-      <div className="morecards">
-        <div id="movies">
-          <Titlecard title={"Blockbuster Movies"} category={"top_rated"} />
-        </div>
-        <div id="new-popular">
-          <Titlecard title={"New & Popular"} category={"popular"} />
-        </div>
-        <div id="upcoming">
-          <Titlecard title={"Upcoming"} category={"upcoming"} />
-        </div>
-        <div id="top-picks">
-          <Titlecard title={"Top Picks For You"} category={"now_playing"} />
-        </div>
-      </div>
-
-      <Footer />
     </div>
   );
 };
