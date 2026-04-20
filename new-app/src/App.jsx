@@ -5,11 +5,7 @@ import Home from './pages/Home/Home';
 import Login from './pages/login/login';
 import Player from './pages/player/player';
 import Titlecard from './components/titlecards/Titlecard';
-import Privacy from "./Privacy";
-import HelpCenter from "./HelpCenter";
-import AudioDescription from "./AudioDescription";
-import LegalNotices from "./LegalNotices";
-import ContactUs from "./ContactUs";
+import UnderConstruction from "./pages/UnderConstruction/UnderConstruction";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -66,11 +62,7 @@ const App = () => {
         />
 
         {/* Static Pages */}
-        <Route path="/privacy" element={<Privacy />} />
-        <Route path="/help-centre" element={<HelpCenter />} />
-        <Route path="/audio-description" element={<AudioDescription />} />
-        <Route path="/legal-notices" element={<LegalNotices />} />
-        <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/under-construction" element={<UnderConstruction />} />
 
         {/* Extra route for Titlecard if you need to access it directly */}
         <Route path='/titlecard' element={<Titlecard />} />
