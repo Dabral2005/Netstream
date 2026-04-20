@@ -130,6 +130,13 @@ const Navbar = ({ onSearch }) => {
             <path d="M13.73 21a2 2 0 0 1-3.46 0M18 8A6 6 0 1 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
           <span className="notification-dot"></span>
+          {/* Notification Dropdown */}
+          <div className="dropdown notification-dropdown">
+            <div className="dropdown-item">New arrival: Stranger Things Season 5</div>
+            <div className="dropdown-item">Top pick for you: Inception</div>
+            <div className="dropdown-divider"></div>
+            <div className="dropdown-signout" style={{textAlign: "center" }}>See All Notifications</div>
+          </div>
         </div>
 
         {/* Profile */}
@@ -148,10 +155,10 @@ const Navbar = ({ onSearch }) => {
                   <img src={user?.picture || profile_img} alt="" style={{ width: 28, height: 28, borderRadius: 4 }} referrerPolicy="no-referrer" />
                   {user?.name || "User"}
                 </div>
-                <div className="dropdown-item">Manage Profiles</div>
-                <div className="dropdown-item">Transfer Profile</div>
-                <div className="dropdown-item">Account</div>
-                <div className="dropdown-item">Help Centre</div>
+                <div className="dropdown-item" onClick={() => alert("Manage Profiles")}>Manage Profiles</div>
+                <div className="dropdown-item" onClick={() => alert("Transfer Profile")}>Transfer Profile</div>
+                <div className="dropdown-item" onClick={() => alert("Account Settings")}>Account</div>
+                <div className="dropdown-item" onClick={() => alert("Help Centre")}>Help Centre</div>
                 <div className="dropdown-divider"></div>
               </>
             )}

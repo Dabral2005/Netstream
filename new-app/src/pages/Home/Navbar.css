@@ -247,8 +247,14 @@
   text-decoration: underline;
 }
 
-.navbar-profile:hover .dropdown {
+.navbar-profile:hover .dropdown,
+.notification-bell:hover .dropdown {
   display: block;
+}
+
+.notification-dropdown {
+  width: 300px;
+  right: -20px;
 }
 
 /* ===== Responsive Navbar ===== */
