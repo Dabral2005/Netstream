@@ -27,19 +27,19 @@ const Footer = () => {
       <ul className="footer-links">
         <li><Link to="/audio-description">Audio Description</Link></li>
         <li><Link to="/help-centre">Help Centre</Link></li>
-        <li><a href="#gift">Gift Cards</a></li>
-        <li><a href="#media">Media Centre</a></li>
-        <li><a href="#investor">Investor Relations</a></li>
-        <li><a href="#jobs">Jobs</a></li>
-        <li><a href="#terms">Terms of Use</a></li>
+        <li><a href="#" onClick={(e) => { e.preventDefault(); alert("Gift Cards page under construction"); }}>Gift Cards</a></li>
+        <li><a href="#" onClick={(e) => { e.preventDefault(); alert("Media Centre under construction"); }}>Media Centre</a></li>
+        <li><a href="#" onClick={(e) => { e.preventDefault(); alert("Investor Relations under construction"); }}>Investor Relations</a></li>
+        <li><a href="#" onClick={(e) => { e.preventDefault(); alert("Jobs page under construction"); }}>Jobs</a></li>
+        <li><a href="#" onClick={(e) => { e.preventDefault(); alert("Terms of Use under construction"); }}>Terms of Use</a></li>
         <li><Link to="/privacy">Privacy</Link></li>
         <li><Link to="/legal-notices">Legal Notices</Link></li>
-        <li><a href="#cookies">Cookie Preferences</a></li>
-        <li><a href="#corporate">Corporate Information</a></li>
+        <li><a href="#" onClick={(e) => { e.preventDefault(); alert("Cookie Preferences under construction"); }}>Cookie Preferences</a></li>
+        <li><a href="#" onClick={(e) => { e.preventDefault(); alert("Corporate Information under construction"); }}>Corporate Information</a></li>
         <li><Link to="/contact-us">Contact Us</Link></li>
       </ul>
 
-      <button className="service-code-btn">Service Code</button>
+      <button className="service-code-btn" onClick={() => alert("Service Code: 492-384-592")}>Service Code</button>
 
       <p className='copyright-text'>© 1997-2026 Netstream, Inc.</p>
     </footer>
