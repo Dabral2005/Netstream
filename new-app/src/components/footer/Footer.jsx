@@ -25,18 +25,18 @@ const Footer = () => {
       </div>
 
       <ul className="footer-links">
-        <li><Link to="/audio-description">Audio Description</Link></li>
-        <li><Link to="/help-centre">Help Centre</Link></li>
-        <li><a href="#" onClick={(e) => { e.preventDefault(); alert("Gift Cards page under construction"); }}>Gift Cards</a></li>
-        <li><a href="#" onClick={(e) => { e.preventDefault(); alert("Media Centre under construction"); }}>Media Centre</a></li>
-        <li><a href="#" onClick={(e) => { e.preventDefault(); alert("Investor Relations under construction"); }}>Investor Relations</a></li>
-        <li><a href="#" onClick={(e) => { e.preventDefault(); alert("Jobs page under construction"); }}>Jobs</a></li>
-        <li><a href="#" onClick={(e) => { e.preventDefault(); alert("Terms of Use under construction"); }}>Terms of Use</a></li>
-        <li><Link to="/privacy">Privacy</Link></li>
-        <li><Link to="/legal-notices">Legal Notices</Link></li>
-        <li><a href="#" onClick={(e) => { e.preventDefault(); alert("Cookie Preferences under construction"); }}>Cookie Preferences</a></li>
-        <li><a href="#" onClick={(e) => { e.preventDefault(); alert("Corporate Information under construction"); }}>Corporate Information</a></li>
-        <li><Link to="/contact-us">Contact Us</Link></li>
+        <li><Link to="/under-construction">Audio Description</Link></li>
+        <li><Link to="/under-construction">Help Centre</Link></li>
+        <li><Link to="/under-construction">Gift Cards</Link></li>
+        <li><Link to="/under-construction">Media Centre</Link></li>
+        <li><Link to="/under-construction">Investor Relations</Link></li>
+        <li><Link to="/under-construction">Jobs</Link></li>
+        <li><Link to="/under-construction">Terms of Use</Link></li>
+        <li><Link to="/under-construction">Privacy</Link></li>
+        <li><Link to="/under-construction">Legal Notices</Link></li>
+        <li><Link to="/under-construction">Cookie Preferences</Link></li>
+        <li><Link to="/under-construction">Corporate Information</Link></li>
+        <li><Link to="/under-construction">Contact Us</Link></li>
       </ul>
 
       <button className="service-code-btn" onClick={() => alert("Service Code: 492-384-592")}>Service Code</button>
