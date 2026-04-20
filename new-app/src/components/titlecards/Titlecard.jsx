@@ -47,6 +47,27 @@ const Titlecard = ({ title, category, type = "movie", isTopTen = false }) => {
       });
   }, [category, type]);
 
+  const [modalData, setModalData] = useState(null);
+
+  // Close modal on Escape
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === "Escape") setModalData(null);
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, []);
+
+  const openModal = (e, card) => {
+    e.preventDefault();
+    setModalData(card);
+  };
+
+  const closeModal = () => {
+    setModalData(null);
+  };
+
+  // ... (keeping other helper functions same)
   const scrollLeft = () => {
     if (cardsRef.current) {
       cardsRef.current.scrollBy({ left: -800, behavior: 'smooth' });
@@ -94,10 +115,79 @@ const Titlecard = ({ title, category, type = "movie", isTopTen = false }) => {
     );
   }
 
+  // Define Modal UI
+  const renderModal = () => {
+    if (!modalData) return null;
+    const matchScore = getMatchScore(modalData.vote_average || 7);
+    const releaseStr = modalData.release_date || modalData.first_air_date || '';
+    const year = releaseStr ? releaseStr.slice(0, 4) : '';
+    const genres = (modalData.genre_ids || []).slice(0, 3).map(id => GENRE_MAP[id]).filter(Boolean);
+
+    return (
+      <div className="info-modal-overlay" onClick={closeModal}>
+        <div className="info-modal-content" onClick={(e) => e.stopPropagation()}>
+          <button className="info-modal-close" onClick={closeModal}>✕</button>
+          
+          <div className="info-modal-hero">
+            <img 
+              src={`https://image.tmdb.org/t/p/original${modalData.backdrop_path || modalData.poster_path}`} 
+              alt={modalData.title || modalData.name} 
+              className="info-modal-backdrop"
+            />
+            <div className="info-modal-gradient"></div>
+            <div className="info-modal-hero-content">
+              <h1 className="info-modal-title">{modalData.title || modalData.name}</h1>
+              <div className="info-modal-buttons">
+                <Link to={`/player/${modalData.id}`} className="modal-btn play-btn">
+                  ▶ Play
+                </Link>
+                <button className="modal-btn action-btn" onClick={() => setMyListCards(p => ({...p, [modalData.id]: !p[modalData.id]}))}>
+                  {myListCards[modalData.id] ? '✓' : '＋'}
+                </button>
+                <button className="modal-btn action-btn" onClick={() => setLikedCards(p => ({...p, [modalData.id]: !p[modalData.id]}))}>
+                  {likedCards[modalData.id] ? '❤️' : '👍'}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className="info-modal-body">
+            <div className="info-modal-left">
+              <div className="info-modal-meta">
+                <span className="info-match-score">{matchScore}% Match</span>
+                <span className="info-year">{year}</span>
+                <span className="info-rating">{modalData.adult ? '18+' : 'U/A 13+'}</span>
+                <span className="info-hd">HD</span>
+              </div>
+              <p className="info-modal-overview">{modalData.overview || "No description available."}</p>
+            </div>
+            
+            <div className="info-modal-right">
+              <div className="info-modal-tags">
+                <span className="tag-label">Genres:</span> {genres.join(', ') || 'N/A'}
+              </div>
+              {modalData.original_language && (
+                <div className="info-modal-tags">
+                  <span className="tag-label">Language:</span> {modalData.original_language.toUpperCase()}
+                </div>
+              )}
+              {modalData.popularity && (
+                <div className="info-modal-tags">
+                  <span className="tag-label">Popularity:</span> {Math.round(modalData.popularity)} K
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   // Top 10 Layout
   if (isTopTen) {
     return (
       <div className='titlecards'>
+        {renderModal()}
         <div className="titlecards-header">
           <h2>{title || "Top 10 Today"}</h2>
         </div>
@@ -109,14 +199,14 @@ const Titlecard = ({ title, category, type = "movie", isTopTen = false }) => {
             {apiData.slice(0, 10).map((card, index) => {
               if (!card.poster_path) return null;
               return (
-                <Link to={`/player/${card.id}`} className="top-ten-card" key={card.id}>
+                 <div className="top-ten-card" key={card.id} onClick={(e) => openModal(e, card)}>
                   <span className="top-ten-number">{index + 1}</span>
                   <img
                     src={`https://image.tmdb.org/t/p/w300${card.poster_path}`}
                     alt={card.title || "Untitled"}
                     className="top-ten-poster"
                   />
-                </Link>
+                </div>
               );
             })}
           </div>
@@ -131,6 +221,7 @@ const Titlecard = ({ title, category, type = "movie", isTopTen = false }) => {
   // Regular Layout with hover cards
   return (
     <div className='titlecards'>
+      {renderModal()}
       <div className="titlecards-header">
         <h2>{title || "Popular on Netstream"}</h2>
         <span className="explore-arrow">Explore All ›</span>
@@ -190,10 +281,7 @@ const Titlecard = ({ title, category, type = "movie", isTopTen = false }) => {
                     <button 
                       className="hover-action-btn expand-btn" 
                       title="More Info"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        alert(`More Info for ${card.title || card.name}\n\n${card.overview}`);
-                      }}
+                      onClick={(e) => openModal(e, card)}
                     >
                       ˅
                     </button>
