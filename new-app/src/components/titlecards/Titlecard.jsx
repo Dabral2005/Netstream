@@ -18,6 +18,8 @@ const getMatchScore = (voteAvg) => {
 const Titlecard = ({ title, category, isTopTen = false }) => {
   const [apiData, setApiData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [likedCards, setLikedCards] = useState({});
+  const [myListCards, setMyListCards] = useState({});
   const cardsRef = useRef();
 
   const options = {
@@ -163,9 +165,36 @@ const Titlecard = ({ title, category, isTopTen = false }) => {
                 <div className="card-hover-info">
                   <div className="hover-actions">
                     <Link to={`/player/${card.id}`} className="hover-action-btn play-btn" title="Play">▶</Link>
-                    <button className="hover-action-btn" title="Add to My List">＋</button>
-                    <button className="hover-action-btn" title="Like">👍</button>
-                    <button className="hover-action-btn expand-btn" title="More Info">˅</button>
+                    <button 
+                      className="hover-action-btn" 
+                      title="Add to My List"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setMyListCards(prev => ({ ...prev, [card.id]: !prev[card.id] }));
+                      }}
+                    >
+                      {myListCards[card.id] ? '✓' : '＋'}
+                    </button>
+                    <button 
+                      className="hover-action-btn" 
+                      title="Like"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setLikedCards(prev => ({ ...prev, [card.id]: !prev[card.id] }));
+                      }}
+                    >
+                      {likedCards[card.id] ? '❤️' : '👍'}
+                    </button>
+                    <button 
+                      className="hover-action-btn expand-btn" 
+                      title="More Info"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        alert(`More Info for ${card.title || card.name}\n\n${card.overview}`);
+                      }}
+                    >
+                      ˅
+                    </button>
                   </div>
                   <div className="hover-meta">
                     <span className="match-score">{matchScore}% Match</span>

@@ -44,8 +44,10 @@
   display: flex;
   gap: 5px;
   overflow-x: scroll;
+  overflow-y: hidden;
   scroll-behavior: smooth;
-  padding: 20px 0;
+  padding: 20px 0 120px 0; /* Huge bottom padding to avoid clipping the dropdown */
+  margin-bottom: -100px;  /* Offset the padding so the page doesn't have huge gaps */
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
