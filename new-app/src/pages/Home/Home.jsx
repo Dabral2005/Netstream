@@ -306,19 +306,19 @@ const Home = () => {
 
           {/* More Categories */}
           <div className="morecards">
-            <Titlecard title={"Popular on Netstream"} />
+            <Titlecard title={"Trending TV Shows"} type={"tv"} category={"popular"} />
             <div id="movies">
-              <Titlecard title={"Blockbuster Movies"} category={"top_rated"} />
+              <Titlecard title={"Blockbuster Movies"} type={"movie"} category={"top_rated"} />
             </div>
-            <Titlecard title={"Top 10 in India Today"} category={"popular"} isTopTen={true} />
+            <Titlecard title={"Top 10 Series Today"} type={"tv"} category={"top_rated"} isTopTen={true} />
             <div id="new-popular">
-              <Titlecard title={"New & Popular"} category={"popular"} />
+              <Titlecard title={"New & Popular Movies"} type={"movie"} category={"popular"} />
             </div>
             <div id="upcoming">
-              <Titlecard title={"Upcoming"} category={"upcoming"} />
+              <Titlecard title={"Upcoming Movies"} type={"movie"} category={"upcoming"} />
             </div>
             <div id="top-picks">
-              <Titlecard title={"Top Picks For You"} category={"now_playing"} />
+              <Titlecard title={"Top Picks For You"} type={"tv"} category={"on_the_air"} />
             </div>
           </div>
 

@@ -15,7 +15,7 @@ const getMatchScore = (voteAvg) => {
   return Math.min(99, Math.max(65, Math.round(voteAvg * 10)));
 };
 
-const Titlecard = ({ title, category, isTopTen = false }) => {
+const Titlecard = ({ title, category, type = "movie", isTopTen = false }) => {
   const [apiData, setApiData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [likedCards, setLikedCards] = useState({});
@@ -32,7 +32,8 @@ const Titlecard = ({ title, category, isTopTen = false }) => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`https://api.themoviedb.org/3/movie/${category ? category : "now_playing"}?language=en-US&page=1`, options)
+    const endpointCategory = category || (type === 'tv' ? 'on_the_air' : 'now_playing');
+    fetch(`https://api.themoviedb.org/3/${type}/${endpointCategory}?language=en-US&page=1`, options)
       .then(res => res.json())
       .then(res => {
         if (res && res.results) {
@@ -44,7 +45,7 @@ const Titlecard = ({ title, category, isTopTen = false }) => {
         console.error("Error fetching data:", err);
         setLoading(false);
       });
-  }, [category]);
+  }, [category, type]);
 
   const scrollLeft = () => {
     if (cardsRef.current) {
@@ -144,7 +145,8 @@ const Titlecard = ({ title, category, isTopTen = false }) => {
 
             const genres = (card.genre_ids || []).slice(0, 3).map(id => GENRE_MAP[id]).filter(Boolean);
             const matchScore = getMatchScore(card.vote_average || 7);
-            const year = card.release_date ? card.release_date.slice(0, 4) : '';
+            const releaseStr = card.release_date || card.first_air_date || '';
+            const year = releaseStr ? releaseStr.slice(0, 4) : '';
 
             return (
               <div className="card" key={card.id}>
