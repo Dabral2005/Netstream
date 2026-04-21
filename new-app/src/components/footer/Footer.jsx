@@ -25,18 +25,18 @@ const Footer = () => {
       </div>
 
       <ul className="footer-links">
-        <li><Link to="/under-construction">Audio Description</Link></li>
-        <li><Link to="/under-construction">Help Centre</Link></li>
+        <li><Link to="/audio-description">Audio Description</Link></li>
+        <li><Link to="/help-centre">Help Centre</Link></li>
         <li><Link to="/under-construction">Gift Cards</Link></li>
-        <li><Link to="/under-construction">Media Centre</Link></li>
-        <li><Link to="/under-construction">Investor Relations</Link></li>
+        <li><Link to="/media-centre">Media Centre</Link></li>
+        <li><Link to="/investor-relations">Investor Relations</Link></li>
         <li><Link to="/under-construction">Jobs</Link></li>
-        <li><Link to="/under-construction">Terms of Use</Link></li>
-        <li><Link to="/under-construction">Privacy</Link></li>
-        <li><Link to="/under-construction">Legal Notices</Link></li>
-        <li><Link to="/under-construction">Cookie Preferences</Link></li>
-        <li><Link to="/under-construction">Corporate Information</Link></li>
-        <li><Link to="/under-construction">Contact Us</Link></li>
+        <li><Link to="/terms-of-use">Terms of Use</Link></li>
+        <li><Link to="/privacy">Privacy</Link></li>
+        <li><Link to="/legal-notices">Legal Notices</Link></li>
+        <li><Link to="/cookie-preferences">Cookie Preferences</Link></li>
+        <li><Link to="/corporate-information">Corporate Information</Link></li>
+        <li><Link to="/contact-us">Contact Us</Link></li>
       </ul>
 
       <button className="service-code-btn" onClick={() => alert("Service Code: 492-384-592")}>Service Code</button>
