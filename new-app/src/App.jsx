@@ -5,19 +5,18 @@ import Home from './pages/Home/Home';
 import Login from './pages/login/login';
 import Player from './pages/player/player';
 import Titlecard from './components/titlecards/Titlecard';
-import UnderConstruction from "./pages/UnderConstruction/UnderConstruction";
-
 // Footer Pages
-import AudioDescription from './pages/AudioDescription/AudioDescription';
-import HelpCenter from './pages/HelpCenter/HelpCenter';
-import MediaCenter from './pages/MediaCenter/MediaCenter';
-import InvestorRelations from './pages/InvestorRelations/InvestorRelations';
-import TermsOfUse from './pages/TermsOfUse/TermsOfUse';
-import Privacy from './pages/Privacy/Privacy';
-import LegalNotices from './pages/LegalNotices/LegalNotices';
-import CookiePreferences from './pages/CookiePreferences/CookiePreferences';
-import CorporateInfo from './pages/CorporateInfo/CorporateInfo';
-import ContactUs from './pages/ContactUs/ContactUs';
+import AudioDescription from './pages/footer/AudioDescription/AudioDescription';
+import HelpCenter from './pages/footer/HelpCenter/HelpCenter';
+import MediaCenter from './pages/footer/MediaCenter/MediaCenter';
+import InvestorRelations from './pages/footer/InvestorRelations/InvestorRelations';
+import TermsOfUse from './pages/footer/TermsOfUse/TermsOfUse';
+import Privacy from './pages/footer/Privacy/Privacy';
+import LegalNotices from './pages/footer/LegalNotices/LegalNotices';
+import CookiePreferences from './pages/footer/CookiePreferences/CookiePreferences';
+import CorporateInfo from './pages/footer/CorporateInfo/CorporateInfo';
+import ContactUs from './pages/footer/ContactUs/ContactUs';
+import UnderConstruction from "./pages/footer/UnderConstruction/UnderConstruction";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
